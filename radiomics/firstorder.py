@@ -1,6 +1,5 @@
 import numpy
 from six.moves import range
-import pandas
 from radiomics import base, cMatrices, deprecated
 
 
@@ -72,7 +71,7 @@ class RadiomicsFirstOrder(base.RadiomicsFeaturesBase):
 
     if voxelCoordinates is None:
       self.targetVoxelArray = self.imageArray[self.maskArray].astype('float').reshape((1, -1))
-      p_i = pandas.unique(self.discretizedImageArray[self.maskArray])
+      _, p_i = numpy.unique(self.discretizedImageArray[self.maskArray])
       p_i = p_i.reshape((1, -1))
     else:
       # voxelCoordinates shape (Nd, Nvox)
