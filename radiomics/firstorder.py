@@ -71,7 +71,7 @@ class RadiomicsFirstOrder(base.RadiomicsFeaturesBase):
 
     if voxelCoordinates is None:
       self.targetVoxelArray = self.imageArray[self.maskArray].astype('float').reshape((1, -1))
-      _, p_i = numpy.unique(self.discretizedImageArray[self.maskArray])
+      _, p_i = numpy.unique(self.discretizedImageArray[self.maskArray], return_counts=True)
       p_i = p_i.reshape((1, -1))
     else:
       # voxelCoordinates shape (Nd, Nvox)
