@@ -51,7 +51,8 @@ def getMask(mask, **kwargs):
   logger.debug('Force casting mask to UInt32 to ensure correct datatype.')
   mask = sitk.Cast(mask, sitk.sitkUInt32)
 
-  labels = numpy.unique(sitk.GetArrayFromImage(mask))
+  labels = set(sitk.GetArrayFromImage(mask).ravel())
+
   if len(labels) == 1 and labels[0] == 0:
     raise ValueError('No labels found in this mask (i.e. nothing is segmented)!')
   if label not in labels:
