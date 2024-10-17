@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import logging
-
+import pandas
 import numpy
 import pywt
 import SimpleITK as sitk
@@ -51,7 +51,7 @@ def getMask(mask, **kwargs):
   logger.debug('Force casting mask to UInt32 to ensure correct datatype.')
   mask = sitk.Cast(mask, sitk.sitkUInt32)
 
-  labels = set(sitk.GetArrayFromImage(mask).ravel())
+  labels = set(sitk.GetArrayFromImage(mask).flatten())
 
   if len(labels) == 1 and labels[0] == 0:
     raise ValueError('No labels found in this mask (i.e. nothing is segmented)!')
